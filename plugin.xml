@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-video-trimmer"
+    version="1.0.0">
+    <name>Video Trimmer</name>
+    <description></description>
+    <license>MIT</license>
+    <keywords></keywords>
+    <repo>https://github.com/driftyco/cordova-plugin-template.git</repo>
+    <issue>https://github.com/driftyco/cordova-plugin-template/issues</issue>
+
+    <!-- android -->
+    <platform name="android">
+        <framework src="src/android/com/snapimov/build.gradle" custom="true" type="gradleReference"/>
+
+        <js-module src="www/plugin.js" name="plugin">
+            <runs/>
+            <!-- This is the window variable name you want, like window.MyCordovaPlugin -->
+            <clobbers target="VideoCrop" />
+        </js-module>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="VideoCrop">
+                <param name="android-package" value="com.snapimov.VideoCrop" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <!-- separate config-file here targeting AndroidManifest with parent NOT equal to /* -->
+        <config-file target="AndroidManifest.xml"
+            parent="/manifest/application">
+            <activity
+                android:name="com.snapimov.CropActivity"
+                android:theme="@style/Theme.AppCompat.Light">
+            </activity>         
+        </config-file>
+
+        <source-file src="src/android/com/snapimov/VideoCrop.java" target-dir="src/com/snapimov/"/>
+        <source-file src="src/android/com/snapimov/CropActivity.java" target-dir="src/com/snapimov/"/>
+        <source-file src="res/layout/trim_activity.xml" target-dir="res/layout/"/>
+    </platform>
+</plugin>
